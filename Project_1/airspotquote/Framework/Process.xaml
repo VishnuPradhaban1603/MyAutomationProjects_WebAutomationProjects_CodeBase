@@ -1,0 +1,1128 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="In_REQIDGeneratedFromInit" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1735.33333333333,12311.3333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="37">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="41">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1745.33333333333,12246.6666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Default="[new DataTable]" Name="MasterSheetDT" />
+      <Variable x:TypeArguments="x:String" Name="ParsingDateTime" />
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="WorkBookOutput" />
+      <Variable x:TypeArguments="x:String" Name="SheetName1" />
+      <Variable x:TypeArguments="sd:DataTable" Name="HeadersDT" />
+      <Variable x:TypeArguments="x:Boolean" Name="TemplateIsCorrect" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[new DataTable]" Name="ToReadSeqNumber" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[new DataTable]" Name="FilteredToReadSeqNumber" />
+      <Variable x:TypeArguments="x:String" Name="JobStatus" />
+      <Variable x:TypeArguments="x:Int32" Name="RowIndexOfTheREQID" />
+      <Variable x:TypeArguments="sd:DataTable" Name="RemovedEmptyRows" />
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new list (of String)]" Name="ConvDT_To_List" />
+      <Variable x:TypeArguments="x:Int32" Name="DifferenceOfRowIndex" />
+      <Variable x:TypeArguments="x:String" Name="LastREQID" />
+      <Variable x:TypeArguments="x:String" Name="SheetNameOfMasterFile_AFF" />
+      <Variable x:TypeArguments="x:String" Name="SheetNameofSyncedSharePointFile_AFF" />
+      <Variable x:TypeArguments="x:String" Name="SyncedSharePointFile_AFF" />
+      <Variable x:TypeArguments="x:Int32" Name="ToReadTheMasterAFFDateFrom" />
+      <Variable x:TypeArguments="x:Int32" Name="ToReadTheMasterAFFDateTo" />
+      <Variable x:TypeArguments="x:Int32" Name="RowIndexOfTheNextREQID" />
+      <Variable x:TypeArguments="x:Int32" Name="RowCountOfExistingAFFDataInMaster" />
+      <Variable x:TypeArguments="sd:DataTable" Name="ExistingAFFData" />
+      <Variable x:TypeArguments="x:Boolean" Name="REQIDExistOrNot" />
+      <Variable x:TypeArguments="x:String" Name="MasterADDData" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="ListOfExistingADDInMaster" />
+      <Variable x:TypeArguments="x:Int32" Name="PositionOfAFFInMasterFile" />
+      <Variable x:TypeArguments="x:Int32" Name="AdditionForNewEntry" />
+      <Variable x:TypeArguments="x:String" Name="In_NumberOfFilledSpotRate" />
+      <Variable x:TypeArguments="x:Int32" Name="NumberOfFilledSpotRate" />
+      <Variable x:TypeArguments="x:Int32" Name="CountForColumns" />
+      <Variable x:TypeArguments="x:String" Name="NewOrOldEntry" />
+      <Variable x:TypeArguments="x:Boolean" Name="RowToBeAdded" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="1703.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_TransactionItem(&quot;StakeHolder&quot;).tostring]" sap:VirtualizedContainerService.HintSize="1703.33333333333,11850" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+      <Switch.Default>
+        <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Default Switch Case is Excuted. Please check the StakeHolder Name&quot;]" />
+      </Switch.Default>
+      <Sequence x:Key="VENDOR" DisplayName="Execute workflows for processing VENDOR data" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" Name="inpui" />
+          <Variable x:TypeArguments="x:String" Name="InputDateTime" />
+          <Variable x:TypeArguments="x:String" Name="ConvDateTime1" />
+          <Variable x:TypeArguments="x:String" Name="ConvDateTime2" />
+          <Variable x:TypeArguments="x:String" Name="ConvDateTime3" />
+          <Variable x:TypeArguments="s:DateTime" Name="ParseDateTime" />
+          <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="MailCheckingProcess" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="888.666666666667,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;VENDOR: Switch Case is Executing&quot;]" />
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="888.666666666667,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Check Excel attachments\Reading Input Excel SheetName(0).xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+            <OutArgument x:TypeArguments="ui:WorkbookApplication" x:Key="WorkBookOutput">[WorkBookOutput]</OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="out_SheetName1">[SheetName1]</OutArgument>
+            <InArgument x:TypeArguments="s:String[]" x:Key="in_SheetNames" />
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="888.666666666667,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;After Reading Input Excel SheetName(0).xaml&quot;]" />
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="888.666666666667,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;SheetName1: &quot; + SheetName1.tostring]" />
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="888.666666666667,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Check Excel attachments\CheckingtheTemplate.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="HeadersDT">[HeadersDT]</InOutArgument>
+            <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+            <OutArgument x:TypeArguments="x:Boolean" x:Key="Out_TemplateIsCorrect">[TemplateIsCorrect]</OutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="In_SheetName1">[SheetName1]</InArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="888.666666666667,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Template is correct&quot; + TemplateIsCorrect.ToString]" />
+        <If Condition="[TemplateIsCorrect]" sap:VirtualizedContainerService.HintSize="888.666666666667,887.333333333333" sap2010:WorkflowViewState.IdRef="If_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence sap:VirtualizedContainerService.HintSize="421.333333333333,723.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="ReqGenerated" />
+                <Variable x:TypeArguments="x:String" Name="outputmastersheetDT" />
+                <Variable x:TypeArguments="x:String" Name="SyncedSharePointFile" />
+                <Variable x:TypeArguments="x:String" Name="SheetNameofSyncedSharePointFile" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="379.333333333333,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;The Input Template Columns are Correct&quot;]" />
+              <ui:ReadRange AddHeaders="False" DataTable="[MasterSheetDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="379.333333333333,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_1" Range="A9" SheetName="[SheetName1.tostring]" WorkbookPath="[in_TransactionItem(&quot;FileLocation&quot;).ToString]" />
+              <Assign sap:VirtualizedContainerService.HintSize="379.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[ParsingDateTime]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[In_REQIDGeneratedFromInit]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Processing the Vendor Request\DT Manipulation &amp; Copying to Master.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="ReqGenerated">[ReqGenerated]</InOutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="ParsingDateTime">[ParsingDateTime]</InArgument>
+                  <InOutArgument x:TypeArguments="sd:DataTable" x:Key="MasterSheetDT">[MasterSheetDT]</InOutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="outputmastersheetDT">[outputmastersheetDT]</OutArgument>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="SyncedSharePointFile">[SyncedSharePointFile]</InOutArgument>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="SheetNameofSyncedSharePointFile">[SheetNameofSyncedSharePointFile]</InOutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Processing the Vendor Request\Sending mail response for processing vendor request.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InOutArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InOutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="421.333333333333,206" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Check Excel attachments\Sending Response For Incorrect Template.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="888.666666666667,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Processing the Vendor Request\Marking Processed Mails As 'Read'.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InOutArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="InputDateTime">[InputDateTime]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="ConvDateTime1">[ConvDateTime1]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="ConvDateTime2">[ConvDateTime2]</InOutArgument>
+            <InOutArgument x:TypeArguments="x:String" x:Key="ConvDateTime3">[ConvDateTime3]</InOutArgument>
+            <OutArgument x:TypeArguments="s:DateTime" x:Key="ParseDateTime">[ParseDateTime]</OutArgument>
+            <InOutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="MailCheckingProcess">[MailCheckingProcess]</InOutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="ParsingDateTime">[ParsingDateTime]</OutArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+        <Assign sap:VirtualizedContainerService.HintSize="888.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[JobStatus]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">This mail has been processed</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Updating the Success Job Run Status Sheet workflow" sap:VirtualizedContainerService.HintSize="888.666666666667,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Processing the Vendor Request\Updating the Job Run Status Sheet.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="In_JobStatus">[JobStatus]</InArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+      </Sequence>
+      <Sequence x:Key="AFF" DisplayName="Execute workflows for processing AFF data" sap:VirtualizedContainerService.HintSize="1663.33333333333,11638" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;AFF: Switch Case is Executing&quot;]" />
+        <ui:IsMatch BuilderPattern="req[0-9]{5}" DisplayName="Is Match" sap:VirtualizedContainerService.HintSize="1621.33333333333,58.6666666666667" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[in_TransactionItem(&quot;Subject&quot;).ToString]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;req[0-9]{5}&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="req[0-9]{5}" RegexOption="IgnoreCase, Compiled" Result="[REQIDExistOrNot]" />
+        <If Condition="[REQIDExistOrNot]" sap:VirtualizedContainerService.HintSize="1621.33333333333,3180.66666666667" sap2010:WorkflowViewState.IdRef="If_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence sap:VirtualizedContainerService.HintSize="840,2988" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ListOfREQIDMatches" />
+                <Variable x:TypeArguments="sd:DataTable" Default="[new DataTable]" Name="RemovedEmptyCells" />
+                <Variable x:TypeArguments="x:String" Name="AFFMailREQNumber" />
+                <Variable x:TypeArguments="x:String" Name="NextREQID" />
+                <Variable x:TypeArguments="x:Int32" Name="IndexOfNextREQID" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:Matches sap:VirtualizedContainerService.HintSize="798,58.6666666666667" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[in_TransactionItem(&quot;Subject&quot;).ToString]" IsBuilderTabModified="False" Pattern="req[0-9]{5}" RegexOption="IgnoreCase, Compiled" Result="[ListOfREQIDMatches]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="798,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;The Regex match found in the subject is :  &quot;+ListOfREQIDMatches(0).tostring]" />
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="RPAA0007_SyncedMasterFileLocation" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="798,140.666666666667" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                <ui:GetRobotAsset.Value>
+                  <OutArgument x:TypeArguments="x:String">[SyncedSharePointFile_AFF]</OutArgument>
+                </ui:GetRobotAsset.Value>
+              </ui:GetRobotAsset>
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="RPAA0007_SheetNameOfMasterFile" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="798,140.666666666667" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+                <ui:GetRobotAsset.Value>
+                  <OutArgument x:TypeArguments="x:String">[SheetNameOfMasterFile_AFF]</OutArgument>
+                </ui:GetRobotAsset.Value>
+              </ui:GetRobotAsset>
+              <ui:ReadRange AddHeaders="True" DataTable="[ToReadSeqNumber]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="798,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="A1" SheetName="[SheetNameOfMasterFile_AFF]" WorkbookPath="[SyncedSharePointFile_AFF]" />
+              <ui:FilterDataTable DataTable="[ToReadSeqNumber]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="798,162.666666666667" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[FilteredToReadSeqNumber]" SelectColumnsMode="Keep">
+                <ui:FilterDataTable.Filters>
+                  <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                    <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="LT" />
+                  </scg:List>
+                </ui:FilterDataTable.Filters>
+                <ui:FilterDataTable.SelectColumns>
+                  <scg:List x:TypeArguments="InArgument" Capacity="4">
+                    <InArgument x:TypeArguments="x:String">["Seq"]</InArgument>
+                  </scg:List>
+                </ui:FilterDataTable.SelectColumns>
+              </ui:FilterDataTable>
+              <Assign sap:VirtualizedContainerService.HintSize="798,62" sap2010:WorkflowViewState.IdRef="Assign_20">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="sd:DataTable">[RemovedEmptyCells]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="sd:DataTable">[FilteredToReadSeqNumber.Rows.Cast(Of DataRow)().Where(Function(row) Not row.ItemArray.All(Function(field) field Is DBNull.Value Or field.Equals(" "))).CopyToDataTable()]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="798,62" sap2010:WorkflowViewState.IdRef="Assign_7">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[AFFMailREQNumber]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[ListOfREQIDMatches(0).tostring.trim]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="798,62" sap2010:WorkflowViewState.IdRef="Assign_15">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[IndexOfNextREQID]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[Cint((From row in RemovedEmptyCells.AsEnumerable() select Convert.tostring(row("Seq"))).tolist().indexof(AFFMailREQNumber))+1]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="798,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_16">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">[ConvDT_To_List]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">[(From row in RemovedEmptyCells.AsEnumerable() select Convert.tostring(row("Seq"))).Where(Function(x) Not String.IsNullOrWhiteSpace(x)).Tolist]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:Annotation.AnnotationText="" sap:VirtualizedContainerService.HintSize="798,92" sap2010:WorkflowViewState.IdRef="Assign_21">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[LastREQID]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[ConvDT_To_List(ConvDT_To_List.count-1).ToString]</InArgument>
+                </Assign.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Assign>
+              <Assign sap2010:Annotation.AnnotationText="The Right Next REQID To Find The RowCount of This Vendor Request LIne Items" DisplayName="The Right Next REQID To Find The RowCount of This Vendor Request LIne Items" sap:VirtualizedContainerService.HintSize="798,121.333333333333" sap2010:WorkflowViewState.IdRef="Assign_17">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[NextREQID]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[ConvDT_To_List(IndexOfNextREQID).ToString]</InArgument>
+                </Assign.Value>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="798,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Info" Message="[NextREQID+&quot;   is the Right next REQ ID in the master list&quot;]" />
+              <If sap2010:Annotation.AnnotationText="To check if the REQID in AFF mail subject is available in the master file or not. Will process only if it contained in Master File&#xA;" Condition="[(From row in RemovedEmptyCells.AsEnumerable() select Convert.tostring(row(&quot;Seq&quot;))).tolist().any(function (x) AFFMailREQNumber.trim.contains(x))]" sap:VirtualizedContainerService.HintSize="798,1139.33333333333" sap2010:WorkflowViewState.IdRef="If_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,933.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Yes it contains&quot;]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[(From row in FilteredToReadSeqNumber.AsEnumerable() select Convert.tostring(row(&quot;Seq&quot;))).tolist().indexof(AFFMailREQNumber).tostring+ &quot; is the position of the REQ Id in master file&quot;]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:LogMessage>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[RowIndexOfTheREQID]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[Cint((From row in FilteredToReadSeqNumber.AsEnumerable() select Convert.tostring(row("Seq"))).tolist().indexof(AFFMailREQNumber))]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_18">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[RowIndexOfTheNextREQID]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[Cint((From row in FilteredToReadSeqNumber.AsEnumerable() select Convert.tostring(row("Seq"))).tolist().indexof(NextREQID))]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Info" Message="[RowIndexOfTheNextREQID.tostring+&quot;   is the row index of the next req id in the master list&quot;]" />
+                    <Assign sap2010:Annotation.AnnotationText="This is the row count&#xA;" sap:VirtualizedContainerService.HintSize="334,105.333333333333" sap2010:WorkflowViewState.IdRef="Assign_19">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[DifferenceOfRowIndex]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[RowIndexOfTheNextREQID-RowIndexOfTheREQID]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[DifferenceOfRowIndex.tostring+&quot;   is the No of LineItems of this Vendor Request&quot;]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,185.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Warn" Message="[&quot;No, this REQID is not part of this Master File&quot;]" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Sequence>
+          </If.Else>
+        </If>
+        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1621.33333333333,130" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+          <ui:MultipleAssign.AssignOperations>
+            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:Int32">[ToReadTheMasterAFFDateFrom]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:Int32">[RowIndexOfTheREQID+2]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="x:Int32">[ToReadTheMasterAFFDateTo]</OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="x:Int32">[RowIndexOfTheNextREQID+2]</InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+            </scg:List>
+          </ui:MultipleAssign.AssignOperations>
+        </ui:MultipleAssign>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;Q&quot;+ToReadTheMasterAFFDateFrom.tostring+&quot;:Q&quot;+ToReadTheMasterAFFDateTo.tostring+&quot;  This is range to read for number of existing AFF data in master file&quot;]" />
+        <ui:ReadRange AddHeaders="False" DataTable="[ExistingAFFData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="1621.33333333333,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_5" Range="[&quot;Q&quot;+ToReadTheMasterAFFDateFrom.tostring+&quot;:Q&quot;+ToReadTheMasterAFFDateTo.tostring]" SheetName="[SheetNameOfMasterFile_AFF]" WorkbookPath="[SyncedSharePointFile_AFF]" />
+        <ui:OutputDataTable DataTable="[ExistingAFFData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="1621.33333333333,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_4" Text="[MasterADDData]" />
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[MasterADDData.ToString]" />
+        <Assign sap:VirtualizedContainerService.HintSize="1621.33333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_23">
+          <Assign.To>
+            <OutArgument x:TypeArguments="scg:List(x:String)">[ListOfExistingADDInMaster]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="scg:List(x:String)">[(From row in ExistingAFFData.AsEnumerable() select Convert.tostring(row(0))).Where(Function(x) Not String.IsNullOrWhiteSpace(x)).Tolist]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="1621.33333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_22">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[RowCountOfExistingAFFDataInMaster]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">[ListOfExistingADDInMaster.Count]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Info" Message="[RowCountOfExistingAFFDataInMaster.ToString+&quot;  Row of AFF data in MasterFile&quot;]" />
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="1621.33333333333,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Check Excel attachments\Reading Input Excel SheetName(0).xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+            <OutArgument x:TypeArguments="ui:WorkbookApplication" x:Key="WorkBookOutput">[WorkBookOutput]</OutArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="out_SheetName1">[SheetName1]</OutArgument>
+            <InArgument x:TypeArguments="s:String[]" x:Key="in_SheetNames" />
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;After Reading Input Excel SheetName(0).xaml&quot;]" />
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;SheetName1: &quot; + SheetName1.tostring]" />
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="1621.33333333333,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Check Excel attachments\CheckingtheTemplate.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InOutArgument x:TypeArguments="sd:DataTable" x:Key="HeadersDT">[HeadersDT]</InOutArgument>
+            <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+            <OutArgument x:TypeArguments="x:Boolean" x:Key="Out_TemplateIsCorrect">[TemplateIsCorrect]</OutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="In_SheetName1">[SheetName1]</InArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Template is correct&quot; + TemplateIsCorrect.ToString]" />
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1621.33333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[in_TransactionItem(&quot;Subject&quot;).ToString]" />
+        <If Condition="[TemplateIsCorrect]" sap:VirtualizedContainerService.HintSize="1621.33333333333,5978.66666666667" sap2010:WorkflowViewState.IdRef="If_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence sap:VirtualizedContainerService.HintSize="1154,5816" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="ReqGenerated" />
+                <Variable x:TypeArguments="x:String" Name="outputmastersheetDT" />
+                <Variable x:TypeArguments="x:String" Name="SyncedSharePointFile" />
+                <Variable x:TypeArguments="x:String" Name="SheetNameofSyncedSharePointFile" />
+                <Variable x:TypeArguments="x:String" Name="AirfreightForwarder" />
+                <Variable x:TypeArguments="x:String" Name="TotalTransit" />
+                <Variable x:TypeArguments="x:String" Name="Spotrate" />
+                <Variable x:TypeArguments="x:String" Name="RateValidity" />
+                <Variable x:TypeArguments="x:String" Name="AFFRemarks" />
+                <Variable x:TypeArguments="x:String" Name="DestinationAirport" />
+                <Variable x:TypeArguments="sd:DataTable" Name="CloneMasterDT" />
+                <Variable x:TypeArguments="x:Int32" Name="NoOfRowsInAFFData" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1112,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;The Input AFF Template Columns are Correct&quot;]" />
+              <ui:ReadRange AddHeaders="False" DataTable="[MasterSheetDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="1112,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_3" Range="N9" SheetName="[SheetName1.tostring]" WorkbookPath="[in_TransactionItem(&quot;FileLocation&quot;).ToString]" />
+              <Assign sap:VirtualizedContainerService.HintSize="1112,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_14">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[NoOfRowsInAFFData]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[MasterSheetDT.RowCount]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1112,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Info" Message="[NoOfRowsInAFFData.tostring+ &quot;  is the number of lineitmes in AFF input Data&quot;]" />
+              <If Condition="[NoOfRowsInAFFData=1]" sap:VirtualizedContainerService.HintSize="1112,962.666666666667" sap2010:WorkflowViewState.IdRef="If_5">
+                <If.Then>
+                  <Sequence DisplayName="If The AFF Data contains only one row" sap:VirtualizedContainerService.HintSize="473.333333333333,598" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:OutputDataTable DataTable="[MasterSheetDT]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="431.333333333333,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_3" Text="[outputmastersheetDT]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="431.333333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Info" Message="[outputmastersheetDT]" />
+                    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431.333333333333,252.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                      <ui:MultipleAssign.AssignOperations>
+                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[AirfreightForwarder]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[MasterSheetDT(0)(0).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[TotalTransit]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[MasterSheetDT(0)(1).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[Spotrate]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[MasterSheetDT(0)(2).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[RateValidity]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[MasterSheetDT(0)(3).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[DestinationAirport]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[MasterSheetDT(0)(4).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[AFFRemarks]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[MasterSheetDT(0)(5).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                        </scg:List>
+                      </ui:MultipleAssign.AssignOperations>
+                    </ui:MultipleAssign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="If The AFF Data contains more than one row, then only first row will be considered. all the empty rows and rows other then first row will be removed" sap:VirtualizedContainerService.HintSize="473.333333333333,800.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="431.333333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_13">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataTable">[CloneMasterDT]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataTable">[MasterSheetDT]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:OutputDataTable DataTable="[CloneMasterDT]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="431.333333333333,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[outputmastersheetDT]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="431.333333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[outputmastersheetDT]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="431.333333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_10">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataTable">[RemovedEmptyRows]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataTable">[CloneMasterDT.Rows.Cast(Of DataRow)().Where(Function(row) Not row.ItemArray.All(Function(field) field Is DBNull.Value Or field.Equals(" "))).CopyToDataTable()]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431.333333333333,252.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                      <ui:MultipleAssign.AssignOperations>
+                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[AirfreightForwarder]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[RemovedEmptyRows(0)(0).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[TotalTransit]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[RemovedEmptyRows(0)(1).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[Spotrate]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[RemovedEmptyRows(0)(2).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[RateValidity]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[RemovedEmptyRows(0)(3).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[DestinationAirport]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[RemovedEmptyRows(0)(4).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="x:String">[AFFRemarks]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="x:String">[RemovedEmptyRows(0)(5).tostring]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
+                        </scg:List>
+                      </ui:MultipleAssign.AssignOperations>
+                    </ui:MultipleAssign>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <If sap2010:Annotation.AnnotationText="Check If this AFF is already part of the master file (meaning this AFF already submitted Quotation)" Condition="[ListOfExistingADDInMaster.Contains(AirfreightForwarder, StringComparer.OrdinalIgnoreCase )]" sap:VirtualizedContainerService.HintSize="1112,684" sap2010:WorkflowViewState.IdRef="If_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,490.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;Old AFF Entry - AFF data getting Appending&quot;]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_24">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[PositionOfAFFInMasterFile]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[ListOfExistingADDInMaster.IndexOf(AirfreightForwarder)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_26">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[AdditionForNewEntry]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_39">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[NewOrOldEntry]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">Old</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,490.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[&quot;New AFF Entry&quot;]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_25">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[PositionOfAFFInMasterFile]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_27">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[AdditionForNewEntry]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[ListOfExistingADDInMaster.Count]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_40">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[NewOrOldEntry]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">Old</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <Sequence DisplayName="DT_Manipulation__Copying_to_Master" sap:VirtualizedContainerService.HintSize="1112,3349.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="FirstStringSplit" />
+                  <Variable x:TypeArguments="x:String" Name="SecondStringSplit" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="FilteredMasterSheetDT" />
+                  <Variable x:TypeArguments="x:Int32" Name="TempRowIndexPlusOne" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="AFFDataFromMaster" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="CurrentSpotRateStatus" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:OutputDataTable DataTable="[MasterSheetDT]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="1070,80" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[outputmastersheetDT]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:OutputDataTable>
+                <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="RPAA0007_SyncedMasterFileLocation" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="1070,139.333333333333" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+                  <ui:GetRobotAsset.Value>
+                    <OutArgument x:TypeArguments="x:String">[SyncedSharePointFile]</OutArgument>
+                  </ui:GetRobotAsset.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:GetRobotAsset>
+                <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="RPAA0007_SheetNameOfMasterFile" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="1070,139.333333333333" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+                  <ui:GetRobotAsset.Value>
+                    <OutArgument x:TypeArguments="x:String">[SheetNameofSyncedSharePointFile]</OutArgument>
+                  </ui:GetRobotAsset.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:GetRobotAsset>
+                <ui:ReadRange AddHeaders="True" DataTable="[AFFDataFromMaster]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="1070,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_4" Range="[&quot;N&quot;+TempRowIndexPlusOne.ToString]" SheetName="[SheetNameofSyncedSharePointFile]" WorkbookPath="[SyncedSharePointFile]" />
+                <ui:FilterDataTable Filters="{x:Null}" SelectColumns="{x:Null}" DataTable="[MasterSheetDT]" DisplayName="Filter Data Table" FilterRowsMode="[SelectMode.Remove]" sap:VirtualizedContainerService.HintSize="1070,161.333333333333" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[FilteredMasterSheetDT]" SelectColumnsMode="[SelectMode.Remove]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:FilterDataTable>
+                <Assign sap:VirtualizedContainerService.HintSize="1070,62" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataTable">[FilteredMasterSheetDT]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataTable">[FilteredMasterSheetDT.Rows.Cast(Of DataRow)().Where(Function(row) Not row.ItemArray.All(Function(field) field Is DBNull.Value or field.Equals(""))).Copytodatatable()]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="1070,62" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[TempRowIndexPlusOne]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[RowIndexOfTheREQID+2+PositionOfAFFInMasterFile+AdditionForNewEntry]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1070,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_37" Level="Info" Message="[&quot;Row Position   &quot;+TempRowIndexPlusOne.ToString]" />
+                <ui:ReadRange AddHeaders="False" DataTable="[CurrentSpotRateStatus]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="1070,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_6" Range="[&quot;S&quot;+TempRowIndexPlusOne.ToString+&quot;:W&quot;+TempRowIndexPlusOne.ToString]" SheetName="[SheetNameofSyncedSharePointFile]" WorkbookPath="[SyncedSharePointFile]" />
+                <Assign sap:VirtualizedContainerService.HintSize="1070,62" sap2010:WorkflowViewState.IdRef="Assign_28">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[NumberOfFilledSpotRate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="1070,62" sap2010:WorkflowViewState.IdRef="Assign_36">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[CountForColumns]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:InterruptibleWhile CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="To Count How many Spot Rates are currently available in the Master File so that The Number of Spot Rate Limit can be identified." Condition="[CountForColumns&lt;5]" DisplayName="While" sap:VirtualizedContainerService.HintSize="1070,144" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                  <ui:InterruptibleWhile.Body>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="2906.66666666667,507.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[String.IsNullOrWhiteSpace(CurrentSpotRateStatus(0)(CountForColumns).tostring)]" sap:VirtualizedContainerService.HintSize="2864.66666666667,313.333333333333" sap2010:WorkflowViewState.IdRef="If_7">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="1409.33333333333,84" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap:VirtualizedContainerService.HintSize="1409.33333333333,154" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="1367.33333333333,62" sap2010:WorkflowViewState.IdRef="Assign_38">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[NumberOfFilledSpotRate]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[NumberOfFilledSpotRate+1]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                      <Assign sap:VirtualizedContainerService.HintSize="2864.66666666667,62" sap2010:WorkflowViewState.IdRef="Assign_37">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[CountForColumns]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[CountForColumns+1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:InterruptibleWhile.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InterruptibleWhile>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1070,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[&quot;Spot Rate Filled Till Now is:   &quot;+NumberOfFilledSpotRate.ToString]" />
+                <If Condition="[RowCountOfExistingAFFDataInMaster&gt;=DifferenceOfRowIndex]" sap:VirtualizedContainerService.HintSize="1070,448.666666666667" sap2010:WorkflowViewState.IdRef="If_8">
+                  <If.Then>
+                    <Sequence sap:VirtualizedContainerService.HintSize="512,286.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="470,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_41" Level="Info" Message="[&quot;New Row to be added&quot;]" />
+                      <Assign sap:VirtualizedContainerService.HintSize="470,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_41">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">[RowToBeAdded]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence sap:VirtualizedContainerService.HintSize="512,286.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="470,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_40" Level="Info" Message="[&quot;No new Row required&quot;]" />
+                      <Assign sap:VirtualizedContainerService.HintSize="470,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_42">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">[RowToBeAdded]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[NumberOfFilledSpotRate]" sap:VirtualizedContainerService.HintSize="1070,364.666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                  <Switch.Default>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Info" Message="[&quot;Spot Rate Filled Till Now is:   &quot;+In_NumberOfFilledSpotRate.ToString]" />
+                  </Switch.Default>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign x:Key="1" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_30">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[In_NumberOfFilledSpotRate]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">T</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign x:Key="2" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_31">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[In_NumberOfFilledSpotRate]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">U</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign x:Key="3" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_32">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[In_NumberOfFilledSpotRate]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">V</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign x:Key="4" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_33">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[In_NumberOfFilledSpotRate]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">W</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign x:Key="5" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_35">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[In_NumberOfFilledSpotRate]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">LimitReached</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign x:Key="0" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_34">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[In_NumberOfFilledSpotRate]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">S</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Switch>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1070,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[&quot;This is the Cell from which AFF details will be pasted:   &quot;+ &quot;Q&quot;+TempRowIndexPlusOne.ToString]" />
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Writing AFF In Corrsponding Row Of Master File workflow" sap:VirtualizedContainerService.HintSize="1070,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Writing AFF Data In Master File\Writing AFF In Corrsponding Row Of Master File.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="In_TempRowIndexPlusOne">
+                      <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="TempRowIndexPlusOne" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_AirfreightForwarder">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="AirfreightForwarder" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_SheetNameofSyncedSharePointFile">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="SheetNameofSyncedSharePointFile" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_SyncedSharePointFile">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="SyncedSharePointFile" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_TotalTransit">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TotalTransit" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_RateValidity">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="RateValidity" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_AFFRemarks">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="AFFRemarks" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_Spotrate">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Spotrate" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_DestinationAirport">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DestinationAirport" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_NumberOfFilledSpotRate">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="In_NumberOfFilledSpotRate" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_NewOrOldEntry">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="NewOrOldEntry" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="In_RowToBeAdded">
+                      <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="RowToBeAdded" />
+                    </InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1070,285.333333333333" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,206.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:WriteRange AddHeaders="False" DataTable="[FilteredMasterSheetDT]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[SheetNameofSyncedSharePointFile]" StartingCell="[&quot;Q&quot;+TempRowIndexPlusOne.ToString]" WorkbookPath="[SyncedSharePointFile]" />
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CommentOut>
+              </Sequence>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Sending Mail Response For AFF Quotation workflow" sap:VirtualizedContainerService.HintSize="1112,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Sending Mail Response For AFF Quotation.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InOutArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InOutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="421.333333333333,205.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_12">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379.333333333333,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Check Excel attachments\Sending Response For Incorrect Template.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </If.Else>
+        </If>
+        <Assign sap:VirtualizedContainerService.HintSize="1621.33333333333,62" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[JobStatus]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">This mail has been processed</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Updating the Success Job Run Status Sheet workflow" sap:VirtualizedContainerService.HintSize="1621.33333333333,113.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Processing the Vendor Request\Updating the Job Run Status Sheet.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="In_JobStatus">[JobStatus]</InArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+      </Sequence>
+    </Switch>
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="1703.33333333333,55.3333333333333" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+  </Sequence>
+</Activity>

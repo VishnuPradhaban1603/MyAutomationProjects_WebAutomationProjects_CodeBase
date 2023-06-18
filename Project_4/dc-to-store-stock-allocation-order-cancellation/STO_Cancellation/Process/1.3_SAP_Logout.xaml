@@ -1,0 +1,197 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_Logout" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1171,1241" sap2010:WorkflowViewState.IdRef="SAP_Logout_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.SAP;assembly=UiPath.UiAutomation.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.Core.Activities.SAP</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_Logout" sap:VirtualizedContainerService.HintSize="476,1176" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Exit" sap:VirtualizedContainerService.HintSize="434,159" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_1" Item="Exit   (Shift+F3)">
+      <ucas:ClickToolbarButton.Items>
+        <scg:List x:TypeArguments="x:String" Capacity="16">
+          <x:String xml:space="preserve">Enter   (Enter)</x:String>
+          <x:String xml:space="preserve">Save as Variant...   (Ctrl+S)</x:String>
+          <x:String xml:space="preserve">Back   (F3)</x:String>
+          <x:String xml:space="preserve">Exit   (Shift+F3)</x:String>
+          <x:String xml:space="preserve">Cancel   (F12)</x:String>
+          <x:String xml:space="preserve">Execute and Print   (Ctrl+P)</x:String>
+          <x:String>Create Session</x:String>
+          <x:String>Generates shortcut</x:String>
+          <x:String>SAP GUI settings and actions (Ctrl+Alt+F12)</x:String>
+        </scg:List>
+      </ucas:ClickToolbarButton.Items>
+      <ucas:ClickToolbarButton.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d748677e-5ba7-4ef7-85c2-12aae27d85b8" InformativeScreenshot="7fe8e7d6d09805502285f05218b41b4b" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='Store Master' /&gt;&lt;sap id='tbar[0]/btn[15]' /&gt;" WaitForReady="INTERACTIVE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ucas:ClickToolbarButton.Target>
+    </ucas:ClickToolbarButton>
+    <ucas:ClickToolbarButton ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" AlterIfDisabled="True" DisplayName="Click Toolbar Log off" sap:VirtualizedContainerService.HintSize="434,159" sap2010:WorkflowViewState.IdRef="ClickToolbarButton_2" Item="Log off   (Shift+F3)">
+      <ucas:ClickToolbarButton.Items>
+        <scg:List x:TypeArguments="x:String" Capacity="16">
+          <x:String xml:space="preserve">Enter   (Enter)</x:String>
+          <x:String xml:space="preserve">Log off   (Shift+F3)</x:String>
+          <x:String xml:space="preserve">Print   (Ctrl+P)</x:String>
+          <x:String xml:space="preserve">Find   (Ctrl+F)</x:String>
+          <x:String xml:space="preserve">Find next   (Ctrl+G)</x:String>
+          <x:String xml:space="preserve">First Page   (Ctrl+Page up)</x:String>
+          <x:String xml:space="preserve">Previous Page   (Page up)</x:String>
+          <x:String xml:space="preserve">Next page   (Page down)</x:String>
+          <x:String xml:space="preserve">Last Page   (Ctrl+Page down)</x:String>
+          <x:String>Create Session</x:String>
+          <x:String>Generates shortcut</x:String>
+          <x:String>SAP GUI settings and actions (Ctrl+Alt+F12)</x:String>
+        </scg:List>
+      </ucas:ClickToolbarButton.Items>
+      <ucas:ClickToolbarButton.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8a7c378b-00b0-461b-be1a-80695764f651" InformativeScreenshot="366ba4f05485e3e0792e2b5ca9a134a1" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP Easy Access  -  User Menu For*' /&gt;&lt;sap id='tbar[0]/btn[15]' /&gt;" WaitForReady="INTERACTIVE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ucas:ClickToolbarButton.Target>
+    </ucas:ClickToolbarButton>
+    <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'Do you want to log off?'" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="NCheckState_1" Version="V1">
+      <uix:NCheckState.IfExists>
+        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="476,671" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Application: Log Off" sap:VirtualizedContainerService.HintSize="434,578" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="30363cdd-1bef-4743-a74c-d4962bf1ca7b" Version="V1">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,249" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ClickType="Single" DisplayName="Click 'Yes'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="30363cdd-1bef-4743-a74c-d4962bf1ca7b" Version="V1">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="68, 152, 96, 26" ElementType="Button" FriendlyName="'Yes'" FullSelectorArgument="&lt;sap text='Yes' /&gt;" FuzzySelectorArgument="&lt;sap text='Yes' check:text='Yes' /&gt;" Guid="bfa586ca-b706-4d92-98b3-d2db9f11eb29" InformativeScreenshot="55475b36d7a4f9dbdd140f680b7e90fb.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='#32770' title='Log Off' idx='*' /&gt;" SearchSteps="Selector" Visibility="Interactive" WaitForReadyArgument="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="124, 281, 416, 208" FilePath="C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE8SURBVFhHYxgFo2AUjIJBAxxrVls61ay5T2dcC7Ue7AAnoMB/emHHmjWz7KtXMkGtp68DgJbPsCtfzQi1GgLo5QCg5dMcy1cgLH//5UcECG89fa+5dsnR/5Ti0nkH/ztWrcJuefWaKXYVq1B9/v7Lz//Uwk/ffP6f3LX2v335cmyWT7KqQPI5DGAziBwMsjy+ddl/m6IFQMtWo1s+wbZ4CablIIDNMFLxk9ef/se1LMVuec2aPrMStGBHBtgMJAWDLI8FWV6M1fIeqDW4AdCQxSB89f7LfWsPXfm/9uBlknBsCzDYsVlevboLagVxwKZovotd6ZL/diWLScL25cuwWL6mA2os8QBoCFXKAWCwt0GNJA1QqSBqhhpHOqDUAUCfN0KNIg8AHaAJNGg+mTgXaswoGAWjYBSQCBgYAMLf0dVJBbU9AAAAAElFTkSuQmCC" InformativeScreenshot="49839aa9469ab86c22ae7a1125daf0e3.png" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='Log Off' idx='*' /&gt;" />
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+        </Sequence>
+      </uix:NCheckState.IfExists>
+      <uix:NCheckState.IfNotExists>
+        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="200,84" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </uix:NCheckState.IfNotExists>
+      <uix:NCheckState.Target>
+        <uix:TargetAnchorable DesignTimeRectangle="68, 99, 287, 24" ElementType="Text" FriendlyName="'Do you want to log off?'" FullSelectorArgument="&lt;sap text='Do you want to log off?' /&gt;" FuzzySelectorArgument="&lt;sap text='Do you want to log off?' check:text='Do you want to log off?' /&gt;" Guid="f576fb72-9394-430c-9290-1cc8445d438c" ImageBase64="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" InformativeScreenshot="32a0f2496e0c5903032a694ee120e572.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='#32770' title='Log Off' idx='*' /&gt;" SearchSteps="Selector" Visibility="Interactive" />
+      </uix:NCheckState.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NCheckState>
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Application: SAP Logon 770" sap:VirtualizedContainerService.HintSize="434,595" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="08c1763e-0e30-4a98-b347-1be7e58b31ef" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,306" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="334,213" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" Shortcuts="[d(hk)][d(alt)][k(f4)][u(alt)][u(hk)]" Version="V1" />
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="893, 46, 590, 590" FilePath="C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFASURBVFhHYxgFo2AUjIJBAxxrVls61ay5T2dcC7Ue7AAnoMB/emHHmjWz7KtXMkGtp68DgJbPsCtfzQi1GgLo5QCg5dMcy1cgLP+/QzgChA8scW1unlD+v7mfMlzVU//fsWoVdsur10yxq1iF6vP/O0X+Uwt/2SL1P6224r99+XJslk+yqkDyOQxgM4gc/GWL9P+kiuL/NkULgJatRrd8gm3xEkzLQQCbYaTiz0DLE8txWF6zps+sBC3YkQE2A0nBnzdL/08oL/1vU4zV8h6oNbgB0JDFIPxojcq+7bMd/2+f7UASTqgox2559eouqBXEAZui+S52pUv+25UsJgnbly/DYvmaDqixxAOgIVQpB4DB3gY1kjRApYKoGWoc6YBSBwB93gg1ijwAdIAm0KD5ZOJcqDGjYBSMglFAImBgAAAGHG0I3oyiGgAAAABJRU5ErkJggg==" InformativeScreenshot="49736b243d237549b3644f7226e4699a.png" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='SAP Logon 770' /&gt;" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
